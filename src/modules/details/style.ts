@@ -29,7 +29,7 @@ export const Tag = styled.View`
 
 export const TagText = styled.Text`
   font-size: ${Sizes.gutterSize * 2}px;
-  color: black;
+  color: ${Colors.black};
   text-align: center;
 `;
 
@@ -61,14 +61,14 @@ export const LikesContainer = styled.View`
 
 export const LikesDownloadsText = styled.Text`
   font-size: ${Sizes.gutterSize * 2}px;
-  color: white;
+  color: ${Colors.white};
   text-align: center;
 `;
 
 export const LikesDownloadsTextBold = styled.Text`
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: ${Colors.white};
   text-align: center;
 `;
 
@@ -79,7 +79,7 @@ export const AuthorContainer = styled.View`
 
 export const Author = styled.Text`
   font-size: ${Sizes.gutterSize * 2}px;
-  color: black;
+  color: ${Colors.black};
   font-weight: bold;
 `;
 
@@ -91,5 +91,5 @@ export const ResolutionContainer = styled.View`
 
 export const Resolution = styled.Text`
   font-size: 12px;
-  color: black;
+  color: ${Colors.black};
 `;

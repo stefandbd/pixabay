@@ -33,7 +33,7 @@ export default function MainNavigator() {
           options={({route}) => ({
             title: route.params.photoTitle,
             headerStyle: {
-              backgroundColor: Colors.lightGreen,
+              backgroundColor: Colors.darkGreen,
             },
             headerTintColor: Colors.white,
             headerTitleStyle: {
