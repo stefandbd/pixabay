@@ -1,15 +1,19 @@
-import {clearRequest, topHeadlineRequest} from '$httpclient/action';
+import {clearRequest, photosRequest} from '$httpclient/action';
 import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
 import {useDispatch} from 'react-redux';
 import Images from '$themes/Images';
 import styles from './style';
 
+// //////////////////////////////////////////////////////////////////////////////////
+
 type OwnProps = {
   currentPage: number;
   queryString: string;
   keepQueryString: Function;
 };
+
+// //////////////////////////////////////////////////////////////////////////////////
 
 const Searchbar: React.FC<OwnProps> = ({
   currentPage,
@@ -25,7 +29,7 @@ const Searchbar: React.FC<OwnProps> = ({
   const requestAPI = () => {
     if (searchString.length >= 3) {
       dispatch(
-        topHeadlineRequest({
+        photosRequest({
           page: currentPage,
           queryString: searchString,
         }),
@@ -59,7 +63,7 @@ const Searchbar: React.FC<OwnProps> = ({
             keepQueryString(text);
             if (text.length >= 3) {
               dispatch(
-                topHeadlineRequest({
+                photosRequest({
                   page: currentPage,
                   queryString: text,
                 }),

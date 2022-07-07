@@ -6,6 +6,7 @@
 - [App Architecture](#apparch)
     - [Theming & Styling](#theming)
     - [Navigation](#navigation)
+    - [Orientation](#orientation)
 - [Redux & Redux-Sagas](#redux)
 - [Dashboard Page](#dashboard)
     - [Infinite Scrolling](#infinitescroll)
@@ -98,6 +99,12 @@ Coming to styling, styled-components are implemented.
 ### Navigation
 
 Using React-Navigation v6 with a single stack (main-navigator.tsx).
+
+<a name="orientation"/>
+
+### Orientation
+
+Orientation was handled by using react-native-orientation-locker and adjusting the styles of the images and screen elements according to LANDSCAPE (LANDSCAPE_RIGHT, LANDSCAPE_LEFT) and PORTRAIT.
 
 <a name="redux"/>
 

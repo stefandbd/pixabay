@@ -1,9 +1,14 @@
 import {Sizes} from 'src/themes';
 import styled from 'styled-components/native';
 
-export const PhotoContainer = styled.TouchableOpacity`
+interface ContainerStyleProps {
+  isLandscape?: boolean;
+}
+
+export const PhotoContainer = styled.TouchableOpacity<ContainerStyleProps>`
   margin-top: ${Sizes.gutterSize * 2}px;
-  width: ${Sizes.screen.width}px;
+  width: ${props =>
+    props.isLandscape ? Sizes.screen.height : Sizes.screen.width}px;
   padding-horizontal: ${Sizes.gutterSize * 2}px;
 `;
 

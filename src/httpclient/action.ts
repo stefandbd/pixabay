@@ -1,6 +1,6 @@
 import {API_REQUEST, CLEAR_REQUEST} from './constants';
 
-export const topHeadlineRequest = params => ({
+export const photosRequest = params => ({
   type: API_REQUEST,
   payload: {
     page: params.page,

@@ -1,13 +1,8 @@
 import {Sizes, Colors} from '$themes/index';
 import styled from 'styled-components/native';
 
-export const ContainerView = styled.View`
+export const ContainerView = styled.ScrollView`
   background-color: ${Colors.white};
-`;
-
-export const PhotoImage = styled.Image`
-  width: ${Sizes.screen.width}px;
-  height: 240px;
 `;
 
 export const TagsContainer = styled.View`
@@ -34,6 +29,7 @@ export const TagText = styled.Text`
 `;
 
 export const Row = styled.View`
+  justify-content: center;
   flex-direction: row;
   padding-horizontal: ${Sizes.gutterSize * 2}px;
 `;
@@ -85,7 +81,7 @@ export const Author = styled.Text`
 
 export const ResolutionContainer = styled.View`
   position: absolute;
-  top: 220px;
+  top: ${Sizes.gutterSize}px;
   right: ${Sizes.gutterSize}px;
 `;
 

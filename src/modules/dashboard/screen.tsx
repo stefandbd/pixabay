@@ -1,24 +1,37 @@
 import React, {useCallback, useState} from 'react';
-import {Text, SafeAreaView, FlatList, ActivityIndicator} from 'react-native';
+import {Text, FlatList, ActivityIndicator, ListRenderItem} from 'react-native';
 import {connect} from 'react-redux';
 import PhotoItem from '$components/PhotoItem';
 import Searchbar from '$components/SearchBar';
-import {FooterContainer} from './style';
+import {FooterContainer, NoItemsContainer} from './style';
+import colors from '$themes/Colors';
+import {PhotoModel} from '$utils/types';
+
+// //////////////////////////////////////////////////////////////////////////////////
 
 const contentContainerStyle = {
-  justifyContent: 'center',
-  alignContent: 'center',
-  alignItems: 'center',
+  backgroundColor: colors.white,
 };
 
 const headerStyle = {width: '100%', marginBottom: 8};
 const ITEM_HEIGHT = 240; // fixed height of item component
 
-const DashboardScreen = ({photosModel}) => {
+// //////////////////////////////////////////////////////////////////////////////////
+export interface Props {
+  photosModel: {
+    data: PhotoModel[];
+    moreLoading: boolean;
+    isListEnd: boolean;
+  };
+}
+
+// //////////////////////////////////////////////////////////////////////////////////
+
+const DashboardScreen = ({photosModel}: Props) => {
   const [page, setPage] = useState(1);
   const [keepQuery, setKeepQuery] = useState('');
 
-  const getItemLayout = (data, index) => {
+  const getItemLayout = (_, index: number) => {
     return {
       length: ITEM_HEIGHT,
       offset: ITEM_HEIGHT * photosModel.data.length,
@@ -54,40 +67,41 @@ const DashboardScreen = ({photosModel}) => {
   );
 
   const renderEmpty = () => (
-    <>
+    <NoItemsContainer>
       <Text>No Data at the moment</Text>
-    </>
+    </NoItemsContainer>
   );
 
-  const renderItem = item => {
-    return <PhotoItem item={item.item} />;
+  const renderItem: ListRenderItem<PhotoModel> = ({item}) => {
+    return <PhotoItem item={item} />;
   };
 
-  const keyExtractor = useCallback(item => item.id.toString(), []);
+  const keyExtractor = useCallback(
+    (item: PhotoModel) => item.id.toString(),
+    [],
+  );
 
   return (
-    <SafeAreaView>
-      <FlatList
-        contentContainerStyle={contentContainerStyle}
-        ListHeaderComponentStyle={headerStyle}
-        data={photosModel.data}
-        renderItem={renderItem}
-        getItemLayout={getItemLayout}
-        ListHeaderComponent={renderHeader}
-        ListFooterComponent={renderFooter}
-        ListEmptyComponent={renderEmpty}
-        initialNumToRender={10}
-        onEndReachedThreshold={0.2}
-        onEndReached={fetchMoreData}
-        keyExtractor={keyExtractor}
-        //maxToRenderPerBatch
-        //windowSize
-      />
-    </SafeAreaView>
+    <FlatList
+      contentContainerStyle={contentContainerStyle}
+      ListHeaderComponentStyle={headerStyle}
+      data={photosModel.data}
+      renderItem={renderItem}
+      getItemLayout={getItemLayout}
+      ListHeaderComponent={renderHeader}
+      ListFooterComponent={renderFooter}
+      ListEmptyComponent={renderEmpty}
+      initialNumToRender={10}
+      onEndReachedThreshold={0.2}
+      onEndReached={fetchMoreData}
+      keyExtractor={keyExtractor}
+      //maxToRenderPerBatch
+      //windowSize
+    />
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     photosModel: state.photos,
   };
