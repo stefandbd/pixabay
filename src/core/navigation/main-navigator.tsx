@@ -18,7 +18,7 @@ export default function MainNavigator() {
           options={{
             title: 'Pixabay',
             headerStyle: {
-              backgroundColor: Colors.lightGreen,
+              backgroundColor: Colors.darkGreen,
             },
             headerShadowVisible: false,
             headerTintColor: Colors.white,

@@ -113,6 +113,7 @@ Redux-Sagas were used as a side effect manager, using ES6 generator functions to
 Using FlatList with it's best practices for performance and enabling infinite scroll with pagination from the API.
 When the scrolling ends, another API call is made to fetch the next 10 items (as the next page).
 Whenever the data ends (does not have a next page/more items), we handle this check in sagas, and we call API_LIST_END action.
+React-native-fast-image was used to optimize the list of images in the best way.
 
 <a name="search"/>
 
