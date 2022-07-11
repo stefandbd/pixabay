@@ -8,6 +8,10 @@ export const photosRequest = params => ({
   },
 });
 
-export const clearRequest = () => ({
+export const clearRequest = params => ({
   type: CLEAR_REQUEST,
+  payload: {
+    page: params.page,
+    queryString: params.queryString,
+  },
 });

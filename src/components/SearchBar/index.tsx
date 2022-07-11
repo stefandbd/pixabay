@@ -44,7 +44,12 @@ const Searchbar: React.FC<OwnProps> = ({
 
   const onClear = () => {
     setSearchString('');
-    dispatch(clearRequest());
+    dispatch(
+      clearRequest({
+        page: null,
+        queryString: '',
+      }),
+    );
   };
   return (
     <View style={styles.container}>
@@ -61,11 +66,18 @@ const Searchbar: React.FC<OwnProps> = ({
           onChangeText={text => {
             setSearchString(text);
             keepQueryString(text);
-            if (text.length >= 3) {
+            if (text.length > 0) {
               dispatch(
                 photosRequest({
                   page: currentPage,
                   queryString: text,
+                }),
+              );
+            } else if (text.length === 0) {
+              dispatch(
+                clearRequest({
+                  page: null,
+                  queryString: '',
                 }),
               );
             }
